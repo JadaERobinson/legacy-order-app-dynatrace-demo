@@ -1,0 +1,19 @@
+services:
+
+  customer-service:
+    build: ./customer_service
+    ports:
+      - "5003:5003"
+    depends_on:
+      - billing-service
+      - usage-service
+
+  billing-service:
+    build: ./billing_service
+    ports:
+      - "5001:5001"
+
+  usage-service:
+    build: ./usage_service
+    ports:
+      - "5002:5002"
