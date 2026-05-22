@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 5003
 
-CMD ["python", "customer_service.py"]
+CMD ["opentelemetry-instrument","python", "customer_service.py"]

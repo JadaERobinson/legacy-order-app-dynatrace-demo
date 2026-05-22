@@ -10,4 +10,4 @@ RUN python setup_billing_db.py
 
 EXPOSE 5001
 
-CMD ["python", "billing_service.py"]
+CMD ["opentelemetry-instrument","python", "billing_service.py"]

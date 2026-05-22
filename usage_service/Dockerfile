@@ -10,5 +10,5 @@ RUN python setup_usage_db.py
 
 EXPOSE 5002
 
-CMD ["python", "usage_service.py"]
+CMD ["opentelemetry-instrument","python", "usage_service.py"]
 

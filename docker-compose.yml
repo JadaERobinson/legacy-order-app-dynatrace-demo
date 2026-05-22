@@ -4,6 +4,12 @@ services:
     build: ./customer_service
     ports:
       - "5003:5003"
+    environment:
+      - OTEL_SERVICE_NAME=customer-service
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${DT_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_HEADERS=Authorization=Api-Token ${DT_API_TOKEN}
+      - OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+      
     depends_on:
       - billing-service
       - usage-service
@@ -12,8 +18,18 @@ services:
     build: ./billing_service
     ports:
       - "5001:5001"
+    environment:
+      - OTEL_SERVICE_NAME=billing-service
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${DT_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_HEADERS=Authorization=Api-Token ${DT_API_TOKEN}
+      - OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
 
   usage-service:
     build: ./usage_service
     ports:
       - "5002:5002"
+    environment:
+      - OTEL_SERVICE_NAME=usage-service
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${DT_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_HEADERS=Authorization=Api-Token ${DT_API_TOKEN}
+      - OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
